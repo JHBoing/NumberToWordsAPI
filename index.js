@@ -57,6 +57,7 @@ const numbersEnum = {
 
 const uniqueTens = {
     00: "",
+    10: "dez",
     11: "onze",
     12: "doze",
     13: "treze",
@@ -90,30 +91,51 @@ app.get("/:number", function (req, res) {
 function numberToWords(receivedParameter) {
     let numberToConvert = receivedParameter;
     let isNegative = isNumberNegative(receivedParameter);
-    let splitParameter = stringSpliter(receivedParameter);
     let words = [];
-
 
     if(isNegative) {
         numberToConvert = numberToConvert.substring(1, numberToConvert.length);
-        words.push("menos ");
     }
 
     let groupsOfThrees = numberToGroupsOfThrees(numberToConvert);
-    
 
     for(let i = 0; i < groupsOfThrees.length; i++) {
         let group = groupsOfThrees[i];
         group = stringSpliter(group);
         group.reverse();
 
+        if(i == 1) {
+            words.push(words[0] == "" && words[1] == "" && words[2] == "" ? " mil" : " mil e ");
+        }
+
+        if(i == 0 && group[3] == 1 && ( group[0] == 0 & group[1] == 1)) {
+            words.push("cem");
+        }
+
+        if(i == 1 && group[0] == 1 && group[1] === undefined) {
+            words.push(words[0] == "" && words[1] == "" && words[2] == "" ? "mil" : "mil e ");
+        } else if(group[1] == 1) {
+            words.push(uniqueTens[group[1] + group[0]]);
+        } else {            
+            words.push(numbersEnum[group[0]].units);
+            if (group[1] !== undefined) {
+                words.push(numbersEnum[group[1]].tens + (group[0] == 0 ? "" : " e "));
+            }
+        }
+        if(group[2] !== undefined) {
+            words.push(numbersEnum[group[2]].hundreds + (group[0] == 0 && group[1] == 0 ? "" : " e "));
+        }
+
+        
+
+        /*
         if(group[2] == 1 && (group[0] == 0 && group[1] == 0) && i == 0) {
             words.push("cem");
         } else if (group[0] == 1 && group[1] == undefined && i == 1) {
-            words.push("mil");
+            words.push("mil e ");
         } else {
             if(group[1] == 1) {
-                words.push(uniqueTens[group[1]+group[0]]);                
+                words.push(uniqueTens[group[1]+group[0]]);            
             } else {
                 if(i == 1 && group[0] != 1 && group[1] !== undefined) { 
                     words.push(words[0] != '' ? " mil e " : " mil");
@@ -128,10 +150,13 @@ function numberToWords(receivedParameter) {
             if(group[2] !== undefined) {
                 words.push(numbersEnum[group[2]].hundreds + (group[0] == 0 && group[1] == 0 ? "" : " e "));
             }
-        }
-        
+        }*/
     } 
 
+    if(isNegative) {
+        words.push("menos ");
+    }
+    console.log(words);
     return words.reverse().join('');
 }
 
@@ -179,7 +204,8 @@ function isCompatibleSize(receivedParameter) {
 }
 
 function isNumberNegative(receivedParameter) {
-    let splitParameter = stringSpliter('');
+    let splitParameter = stringSpliter(receivedParameter);
+
     if(splitParameter[0] === "-") {
         return true;
     } else {
