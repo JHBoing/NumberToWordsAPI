@@ -7,7 +7,6 @@ const numbersEnum = {
     '1': {
         units: 'um',
         tens: 'dez',
-        hundred: 'cem',
         hundreds: 'cento',
     },
     2: {

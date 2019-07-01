@@ -26,7 +26,7 @@ app.get("/:number", function (req, res) {
 
 function numberToWords(receivedParameter) {
     let numberToConvert = receivedParameter;
-    let isNegative = isNumberNegative(receivedParameter);
+    let isNegative = isNumberNegative(numberToConvert);
     let words = [];
 
     if(isNegative) {
@@ -40,12 +40,8 @@ function numberToWords(receivedParameter) {
         group = stringSpliter(group);
         group.reverse();
 
-        if (i == 1) {
+        if (i == 1 && group[0] != 1) {
             words.push(words[0] == "" && words[1] == "" && words[2] == "" ? " mil" : " mil e ");
-        }
-
-        if (i == 0 && group[3] == 1 && ( group[0] == 0 & group[1] == 1)) {
-            words.push("cem");
         }
 
         if (i == 1 && group[0] == 1 && group[1] === undefined) {
@@ -54,12 +50,14 @@ function numberToWords(receivedParameter) {
             words.push(uniqueTens[group[1] + group[0]]);
         } else {            
             words.push(numbersEnum[group[0]].units);
-            if (group[1] !== undefined) {
+            if (group[1] !== undefined && group[1] !== 0) {
                 words.push(numbersEnum[group[1]].tens + (group[0] == 0 ? "" : " e "));
             }
         }
 
-        if(group[2] !== undefined) {
+        if (i == 0 && group[2] == 1 && ( group[0] == 0 & group[1] == 0)) {
+            words.push("cem");
+        } else if(group[2] !== undefined && group[2] !== 0) {
             words.push(numbersEnum[group[2]].hundreds + (group[0] == 0 && group[1] == 0 ? "" : " e "));
         }
     } 
