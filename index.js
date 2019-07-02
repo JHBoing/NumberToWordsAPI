@@ -4,7 +4,6 @@ var app = express();
 const numbersEnum = require("./enums").numbersEnum;
 const uniqueTens = require("./enums").uniqueTens;
 
-
 app.listen(3000, function () {
     console.log("Server working on port 3000!");
 });
@@ -22,7 +21,6 @@ app.get("/:number", function (req, res) {
     }
 });
 
-
 function numberToWords(receivedParameter) {
     let numberToConvert = parameterCleaner(receivedParameter);
     let isNegative = isNumberNegative(numberToConvert);
@@ -34,7 +32,6 @@ function numberToWords(receivedParameter) {
     if(isNegative) {
         numberToConvert = numberToConvert.substring(1, numberToConvert.length);
     }
-
 
     let groupsOfThrees = numberToGroupsOfThrees(numberToConvert);
     let hundreds = groupsOfThrees[0];

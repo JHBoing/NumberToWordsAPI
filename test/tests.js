@@ -19,7 +19,7 @@ describe('#isNumberNegative()', function() {
         expect(functionReturn).to.be.false;
     });
 
-    it('should return false for value that are not numbers', function() {
+    it('should return false for a value that is not a number', function() {
         let nonNumber = "stringForTesting";
 
         let functionReturn = numberToWordsAPI.isNumberNegative(nonNumber);
@@ -60,7 +60,7 @@ describe('#isCompatibleSize()', function() {
         expect(functionReturn).to.be.false;
     });
 
-    it('should return false for a negative number then the number of characters is greater than 6', function() {
+    it('should return false for a negative number when the number of characters is greater than 6', function() {
         let negativeNumber = -100000;
 
         let functionReturn = numberToWordsAPI.isCompatibleSize(negativeNumber);
@@ -110,7 +110,7 @@ describe('#numberToGroupsOfThrees()', function() {
         expect(functionReturn).to.be.an('array');
     });
 
-    it('should return an array of threes', function() {
+    it('should return an array of three or less digits', function() {
         let givenNumber = "12123";
         
         let functionReturn = numberToWordsAPI.numberToGroupsOfThrees(givenNumber);
@@ -137,7 +137,6 @@ describe('#convertToWords()', function() {
     });
 });
 
-
 describe('#numberToWords()', function() {
     it('should return a string of the given numbers in words for a given string of numbers', function() {
         let givenStringOfNumbers = "11123";
@@ -154,6 +153,4 @@ describe('#numberToWords()', function() {
 
         expect(functionReturn).to.not.equal('5 milhões duzentos e trinta e quatro mil e cento e vinte e três');
     });
-
-
 });
