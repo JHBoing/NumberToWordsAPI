@@ -148,6 +148,20 @@ function isNumberNegative(receivedParameter) {
     }
 }
 
-function stringSpliter(string) {
+function stringSpliter(value) {
+    string = toString(value);
     return string.split('');
+}
+
+function toString(value) {
+    return "" + value;
+}
+
+module.exports = {
+    isNumberNegative,
+    isCompatibleSize,
+    isNumber,
+    numberToGroupsOfThrees,
+    convertToWords,
+    numberToWords
 }
