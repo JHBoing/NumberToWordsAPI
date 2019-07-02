@@ -1,10 +1,10 @@
 const numbersEnum = {
-    '0': {
+    0: {
         units: '',
         tens: '',
         hundreds: '',
     },
-    '1': {
+    1: {
         units: 'um',
         tens: 'dez',
         hundreds: 'cento',

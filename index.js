@@ -45,8 +45,8 @@ function numberToWords(receivedParameter) {
         convertedNumber = wordifiedHundreds.concat(...wordifiedThousands);
             
     } else if (thousands) {
-        wordifiedThousands = convertToWords(thousands);
         hundreds == "000" ? null : wordifiedThousands.push("e");
+        wordifiedThousands.push("mil");
         wordifiedThousands.push(convertToWords(thousands));
         convertedNumber = wordifiedHundreds.concat(...wordifiedThousands);
     }
@@ -120,11 +120,14 @@ function validate(receivedParameter) {
 }
 
 function isNumber(receivedParameter) {
+    if(receivedParameter == "") {
+        return false;
+    }
     return !isNaN(receivedParameter);
 }
 
 function isCompatibleSize(receivedParameter) {
-    
+    receivedParameter = toString(receivedParameter);
     if(isNumberNegative(receivedParameter)) {
         if(receivedParameter.length > 6) {
             return false;
