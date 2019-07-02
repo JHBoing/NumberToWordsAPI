@@ -26,10 +26,15 @@ app.get("/:number", function (req, res) {
 function numberToWords(receivedParameter) {
     let numberToConvert = parameterCleaner(receivedParameter);
     let isNegative = isNumberNegative(numberToConvert);
+    
+    if(receivedParameter == 0) {
+        return "zero";
+    }
         
     if(isNegative) {
         numberToConvert = numberToConvert.substring(1, numberToConvert.length);
     }
+
 
     let groupsOfThrees = numberToGroupsOfThrees(numberToConvert);
     let hundreds = groupsOfThrees[0];
@@ -79,8 +84,9 @@ function convertToWords(hundreds) {
 
     if (hundred == 1 && ( unit == 0 && ten == 0)) {
         wordifiedHundreds.push("cem");
-    } else if(hundred) {
-        unit == 0 && ten == 0 ? null : wordifiedHundreds.push("e");
+    } else if(hundred & hundred != 0) {
+        console.log("este e");
+        (unit == 0 && ten == 0)? null : wordifiedHundreds.push("e");
         wordifiedHundreds.push(numbersEnum[hundred].hundreds);
     }
 
