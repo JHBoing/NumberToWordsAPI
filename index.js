@@ -17,7 +17,7 @@ app.get("/:number", function (req, res) {
         
         res.status(200).send({extenso: wordifiedNumber});
     } catch (err) {
-        res.status(400).send("Erro ao processar sua requisição: " + err.message);
+        res.status(400).send({error: err.message});
     }
 });
 
@@ -73,7 +73,7 @@ function convertToWords(hundreds) {
         wordifiedHundreds.push(uniqueTens[ten + unit]);
     } else {            
         wordifiedHundreds.push(numbersEnum[unit].units);
-        if (ten) {
+        if (ten && ten != 0) {
             unit == 0 || ten == 0 ? null : wordifiedHundreds.push("e");
             wordifiedHundreds.push(numbersEnum[ten].tens);
         }
@@ -82,7 +82,6 @@ function convertToWords(hundreds) {
     if (hundred == 1 && ( unit == 0 && ten == 0)) {
         wordifiedHundreds.push("cem");
     } else if(hundred & hundred != 0) {
-        console.log("este e");
         (unit == 0 && ten == 0)? null : wordifiedHundreds.push("e");
         wordifiedHundreds.push(numbersEnum[hundred].hundreds);
     }
