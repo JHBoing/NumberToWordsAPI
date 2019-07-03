@@ -37,3 +37,8 @@ The expected result is:
     extenso: "5 mil"
 }
 ```
+
+## Running Tests
+
+After installing dependencies you can run tests using:
+> npm test
