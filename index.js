@@ -74,7 +74,7 @@ function convertToWords(hundreds) {
     } else {            
         wordifiedHundreds.push(numbersEnum[unit].units);
         if (ten && ten != 0) {
-            unit == 0 || ten == 0 ? null : wordifiedHundreds.push("e");
+            unit == 0 ? null : wordifiedHundreds.push("e");
             wordifiedHundreds.push(numbersEnum[ten].tens);
         }
     }
