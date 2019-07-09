@@ -1,8 +1,7 @@
-var express = require("express");
-var app = express();
+const express = require("express");
+const app = express();
 
-const numbersEnum = require("./enums").numbersEnum;
-const uniqueTens = require("./enums").uniqueTens;
+const { numbersEnum, uniqueTens } = require("./enums");
 
 app.listen(3000, function () {
     console.log("Server working on port 3000!");
