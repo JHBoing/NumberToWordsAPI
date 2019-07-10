@@ -146,7 +146,7 @@ describe('#numberToWords()', function() {
         expect(functionReturn).to.equal('onze mil e cento e vinte e três');
     });
 
-    it('should return an wrong string of the given numbers in words for a given strinf of more than 5 digits', function() {
+    it('should return a wrong string of the given numbers in words for a given string of more than 5 digits', function() {
         let givenStringOfNumbers = "5234123";
 
         let functionReturn = numberToWordsAPI.numberToWords(givenStringOfNumbers);
