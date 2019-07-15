@@ -71,7 +71,7 @@ function convertToWords(hundreds) {
     if (ten == 1) {
         wordifiedHundreds.push(uniqueTens[ten + unit]);
     } else {            
-        wordifiedHundreds.push(numbersEnum[unit].units);
+        unit == 0 ? null : wordifiedHundreds.push(numbersEnum[unit].units);
         if (ten && ten != 0) {
             unit == 0 ? null : wordifiedHundreds.push("e");
             wordifiedHundreds.push(numbersEnum[ten].tens);
@@ -143,13 +143,7 @@ function isCompatibleSize(receivedParameter) {
 }
 
 function isNumberNegative(receivedParameter) {
-    let splitParameter = stringSpliter(receivedParameter);
-
-    if(splitParameter[0] === "-") {
-        return true;
-    } else {
-        return false;
-    }
+    return receivedParameter < 0;
 }
 
 function stringSpliter(value) {
