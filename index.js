@@ -121,10 +121,7 @@ function validate(receivedParameter) {
 }
 
 function isNumber(receivedParameter) {
-    if(receivedParameter == "") {
-        return false;
-    }
-    return !isNaN(receivedParameter);
+    return !isNaN(parseFloat(receivedParameter)) && isFinite(receivedParameter);
 }
 
 function isCompatibleSize(receivedParameter) {
