@@ -124,15 +124,7 @@ function isNumber(receivedParameter) {
 }
 
 function isCompatibleSize(receivedParameter) {
-    if(isNumberNegative(receivedParameter)) {
-        if(receivedParameter.toString().length > 6) {
-            return false;
-        }
-    } else if (receivedParameter.toString().length > 5) {
-        return false;
-    }
-    
-    return true;
+    return receivedParameter < -99999 || receivedParameter > 99999 ? false : true;
 }
 
 function isNumberNegative(receivedParameter) {
