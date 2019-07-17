@@ -1,0 +1,27 @@
+{
+  "name": "numbertowordsapi",
+  "version": "1.0.0",
+  "description": "API to translate numbers into words.",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.1.4"
+  },
+  "scripts": {
+    "test": "mocha",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/malvinus/NumberToWordsAPI.git"
+  },
+  "author": "João Boing",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/malvinus/NumberToWordsAPI/issues"
+  },
+  "homepage": "https://github.com/malvinus/NumberToWordsAPI#readme"
+}
