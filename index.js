@@ -67,7 +67,6 @@ function convertToWords(hundreds) {
     let hundred = hundreds[2];
 
     let wordifiedHundreds = [];
-
     if (ten == 1) {
         wordifiedHundreds.push(uniqueTens[ten + unit]);
     } else {            
@@ -80,7 +79,7 @@ function convertToWords(hundreds) {
 
     if (hundred == 1 && ( unit == 0 && ten == 0)) {
         wordifiedHundreds.push("cem");
-    } else if(hundred & hundred != 0) {
+    } else if(hundred && hundred != 0) {
         (unit == 0 && ten == 0)? null : wordifiedHundreds.push("e");
         wordifiedHundreds.push(numbersEnum[hundred].hundreds);
     }
@@ -125,17 +124,14 @@ function isNumber(receivedParameter) {
 }
 
 function isCompatibleSize(receivedParameter) {
-    receivedParameter = toString(receivedParameter);
     if(isNumberNegative(receivedParameter)) {
-        if(receivedParameter.length > 6) {
+        if(receivedParameter.toString().length > 6) {
             return false;
         }
-    } else {
-        if( receivedParameter.length > 5 ) {
-            return false;
-        }
+    } else if (receivedParameter.toString().length > 5) {
+        return false;
     }
-
+    
     return true;
 }
 
